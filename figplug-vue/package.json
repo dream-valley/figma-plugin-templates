@@ -1,0 +1,62 @@
+{
+  "name": "figplug-vue",
+  "version": "1.0.0",
+  "description": "Your Figma Plugin",
+  "main": "dist/plugin.js",
+  "scripts": {
+    "build": "concurrently \"npm run build:plugin\" \"npm run build:ui\"",
+    "build:plugin": "vite build --config vite.config.plugin.ts",
+    "build:ui": "vite build --config vite.config.ui.mts",
+    "build:tsc": "tsc -p tsconfig.json",
+    "dev": "concurrently --names \"PLUGIN,UI\" --prefix-colors \"blue,green\" \"npm run dev:plugin\" \"npm run dev:ui\"",
+    "dev:plugin": "vite build --config vite.config.plugin.ts --watch --mode development",
+    "dev:ui": "vite build --config vite.config.ui.mts --watch --mode development",
+    "preview": "vite preview",
+    "lint": "eslint --ext .ts,.tsx --ignore-pattern node_modules .",
+    "lint:fix": "eslint --ext .ts,.tsx --ignore-pattern node_modules --fix .",
+    "watch": "npm run dev"
+  },
+  "author": "",
+  "license": "",
+  "dependencies": {
+    "vue": "^3.5.14"
+  },
+  "devDependencies": {
+    "@figma/eslint-plugin-figma-plugins": "*",
+    "@figma/plugin-typings": "*",
+    "@tailwindcss/vite": "^4.1.7",
+    "@types/node": "^22.15.21",
+    "@typescript-eslint/eslint-plugin": "^6.12.0",
+    "@typescript-eslint/parser": "^6.12.0",
+    "@vitejs/plugin-vue": "^5.2.4",
+    "concurrently": "^9.1.2",
+    "eslint": "^8.54.0",
+    "tailwindcss": "^4.1.7",
+    "typescript": "^5.3.2",
+    "vite": "^6.3.5",
+    "vite-plugin-singlefile": "^2.2.0"
+  },
+  "eslintConfig": {
+    "extends": [
+      "eslint:recommended",
+      "plugin:@typescript-eslint/recommended",
+      "plugin:@figma/figma-plugins/recommended"
+    ],
+    "parser": "@typescript-eslint/parser",
+    "parserOptions": {
+      "project": "./tsconfig.json"
+    },
+    "root": true,
+    "rules": {
+      "@typescript-eslint/no-unused-vars": [
+        "error",
+        {
+          "argsIgnorePattern": "^_",
+          "varsIgnorePattern": "^_",
+          "caughtErrorsIgnorePattern": "^_"
+        }
+      ],
+      "no-debugger": "warn"
+    }
+  }
+}

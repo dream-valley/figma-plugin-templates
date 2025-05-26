@@ -1,0 +1,66 @@
+{
+  "name": "figplug-react",
+  "version": "1.0.0",
+  "description": "Your Figma Plugin",
+  "main": "dist/plugin.js",
+  "type": "module",
+  "scripts": {
+    "build": "concurrently \"npm run build:plugin\" \"npm run build:ui\"",
+    "build:plugin": "vite build --config vite.config.plugin.ts",
+    "build:ui": "vite build --config vite.config.ui.ts",
+    "build:tsc": "tsc -p tsconfig.json",
+    "dev": "concurrently --names \"PLUGIN,UI\" --prefix-colors \"blue,green\" \"npm run dev:plugin\" \"npm run dev:ui\"",
+    "dev:plugin": "vite build --config vite.config.plugin.ts --watch --mode development",
+    "dev:ui": "vite build --config vite.config.ui.ts --watch --mode development",
+    "preview": "vite preview",
+    "lint": "eslint --ext .ts,.tsx --ignore-pattern node_modules .",
+    "lint:fix": "eslint --ext .ts,.tsx --ignore-pattern node_modules --fix .",
+    "watch": "npm run dev"
+  },
+  "author": "",
+  "license": "",
+  "devDependencies": {
+    "@figma/eslint-plugin-figma-plugins": "*",
+    "@figma/plugin-typings": "*",
+    "@tailwindcss/vite": "^4.1.7",
+    "@types/node": "^22.15.21",
+    "@types/react": "^19.1.5",
+    "@types/react-dom": "^19.1.5",
+    "@typescript-eslint/eslint-plugin": "^6.12.0",
+    "@typescript-eslint/parser": "^6.12.0",
+    "@vitejs/plugin-react": "^4.5.0",
+    "concurrently": "^9.1.2",
+    "eslint": "^8.54.0",
+    "typescript": "^5.3.2",
+    "vite": "^6.3.5",
+    "vite-plugin-singlefile": "^2.2.0",
+    "tailwindcss": "^4.1.7"
+  },
+  "eslintConfig": {
+    "extends": [
+      "eslint:recommended",
+      "plugin:@typescript-eslint/recommended",
+      "plugin:@figma/figma-plugins/recommended"
+    ],
+    "parser": "@typescript-eslint/parser",
+    "parserOptions": {
+      "project": "./tsconfig.json"
+    },
+    "root": true,
+    "rules": {
+      "@typescript-eslint/no-unused-vars": [
+        "error",
+        {
+          "argsIgnorePattern": "^_",
+          "varsIgnorePattern": "^_",
+          "caughtErrorsIgnorePattern": "^_"
+        }
+      ],
+      "no-debugger": "warn"
+    }
+  },
+  "dependencies": {
+    "react": "^19.1.0",
+    "react-dom": "^19.1.0"
+  }
+}
