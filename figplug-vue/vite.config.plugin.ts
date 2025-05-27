@@ -7,7 +7,7 @@ export default defineConfig(({ mode }) => ({
     viteSingleFile(),
   ],
   build: {
-    target: 'esnext',
+    target: 'es2017',
     minify: mode === 'production',
     sourcemap: mode !== 'production' ? 'inline' : false,
     emptyOutDir: false,
@@ -16,6 +16,7 @@ export default defineConfig(({ mode }) => ({
       input: path.resolve('src/plugin/plugin.ts'),
       output: {
         entryFileNames: 'plugin.js',
+        format: 'iife', // safe for use
       },
     },
   },
